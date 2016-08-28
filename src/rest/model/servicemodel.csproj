@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1835D767-04FE-4649-926A-CE091DE0BACE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dade.Dms.Rest.ServiceModel</RootNamespace>
+    <AssemblyName>servicemodel</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\host\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="petecat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ref\petecat.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DeviceAlarmRecord.cs" />
+    <Compile Include="DeviceCheckpoint.cs" />
+    <Compile Include="DeviceFaultCategory.cs" />
+    <Compile Include="DeviceInfo.cs" />
+    <Compile Include="DeviceOperationData.cs" />
+    <Compile Include="DeviceRepairRecord.cs" />
+    <Compile Include="DeviceSparePart.cs" />
+    <Compile Include="Enums\DeviceAlarmRecordSeverity.cs" />
+    <Compile Include="Enums\DeviceCheckpointFlag.cs" />
+    <Compile Include="Enums\DeviceInfoStatus.cs" />
+    <Compile Include="Enums\DeviceRepairRecordSeverity.cs" />
+    <Compile Include="Enums\DeviceRepairRecordSourceType.cs" />
+    <Compile Include="Enums\DeviceRepairRecordStatus.cs" />
+    <Compile Include="Enums\InpectionPlanStatus.cs" />
+    <Compile Include="Enums\InspectionPlanScheduleType.cs" />
+    <Compile Include="Enums\InspectionRecordStatus.cs" />
+    <Compile Include="Enums\MaintenancePlanScheduleType.cs" />
+    <Compile Include="Enums\MaintenancePlanStatus.cs" />
+    <Compile Include="Enums\MaintenanceRecordStatus.cs" />
+    <Compile Include="FoundationInfo.cs" />
+    <Compile Include="InspectionPlan.cs" />
+    <Compile Include="InspectionRecord.cs" />
+    <Compile Include="Services\KeyValuePair.cs" />
+    <Compile Include="MaintenancePlan.cs" />
+    <Compile Include="MaintenanceRecord.cs" />
+    <Compile Include="Services\Paging.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\RestException.cs" />
+    <Compile Include="Services\RestServiceRequest.cs" />
+    <Compile Include="Services\RestServiceResponse.cs" />
+    <Compile Include="Services\RestServiceResponseError.cs" />
+    <Compile Include="Services\RestServiceResponse`.cs" />
+    <Compile Include="Services\RestServiceRequest`.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\repo\model\repomodel.csproj">
+      <Project>{1226362a-ff13-4003-bfc0-59d1dbff6465}</Project>
+      <Name>repomodel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

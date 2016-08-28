@@ -1,0 +1,739 @@
+﻿@model  List<Dade.Dms.Rest.ServiceModel.RepairRecord>
+@{
+    ViewBag.Title = "DMS System-" + "故障维修";
+    Layout = "~/Views/Layout.cshtml";
+}
+
+
+<script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="~/Scripts/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+<script language="javascript">
+
+    function paging(targetpage) {
+
+        var form1 = document.createElement("form");
+        form1.id = "form1";
+        form1.name = "form1";
+
+        // 添加到 body 中
+        document.body.appendChild(form1);
+
+        // 创建一个输入
+        var input = document.createElement("input");
+        // 设置相应参数
+        input.type = "text";
+        input.name = "devicenum";
+        input.value = $("#dnum").val();
+
+        var input2 = document.createElement("input");
+        // 设置相应参数
+        input2.type = "text";
+        input2.name = "person";
+        input2.value = $("#operator").val();
+
+       
+        var input4 = document.createElement("input");
+        // 设置相应参数
+        input4.type = "text";
+        input4.name = "statuses";
+        input4.value = $("#statuses").val();
+
+        var input5 = document.createElement("input");
+        // 设置相应参数
+        input2.type = "text";
+        input2.name = "startTime";
+        input2.value = $("#startTime").val();
+        var input6 = document.createElement("input");
+        // 设置相应参数
+        input2.type = "text";
+        input2.name = "endTime";
+        input2.value = $("#endTime").val();
+
+
+        var input3 = document.createElement("input");
+        // 设置相应参数
+        input3.type = "text";
+        input3.name = "pagenum";
+        input3.value = targetpage;
+        // 将该输入框插入到 form 中
+        form1.appendChild(input);
+        form1.appendChild(input2);
+        form1.appendChild(input3);
+
+
+        // form 的提交方式
+        form1.method = "POST";
+        // form 提交路径
+        form1.action = "/MaintenanceInfo/Record";
+        // 对该 form 执行提交
+        form1.submit();
+        // 删除该 form
+        document.body.removeChild(form1);
+    };
+    function alertinfo(title, body) {
+        document.getElementById("infotitle").innerHTML = title;
+        document.getElementById("infobody").innerHTML = body,
+        $('#infomodal').modal('show');
+    }
+    function deletewarning(id) //弹出模态框  确认删除
+    {
+        var x = document.getElementById("lineId");
+        x.value = id;
+        document.getElementById("recordidlabel").innerHTML = id;
+        $('#deletemodal').modal('show');
+    };
+    function deleteline() {
+        $.post("/MaintenanceInfo/deleterepair",
+        {
+            ids: $("#lineId").val(),
+        },
+        function (status) {
+            $('#deletemodal').modal('hide');
+            location.reload();
+
+        }
+      );
+    }
+    function adddevice() {
+        
+        document.getElementById("devicenumber").value = "";
+        document.getElementById("devicename").value = "";
+        document.getElementById("myModalLabel").innerHTML = "添加维修记录";
+        document.getElementById("faulttime").value = "";
+        document.getElementById("faultdescrip").value = "";
+        document.getElementById("faulttime").disabled = false;
+        document.getElementById("faulttimebtn").disabled = false;
+        document.getElementById("faultdescrip").disabled = false;
+        document.getElementById("content").value = "";
+        document.getElementById("repairtime").value = "";
+        document.getElementById("person").value = "";
+        document.getElementById("remark").value = "";
+        document.getElementById("statusip").value = "未维修";
+        document.getElementById("devicenumber").disabled = false;
+        document.getElementById("devicename").disabled = false;
+      
+       
+
+        document.getElementById("submitbtn").style.display = "block";
+        document.getElementById("editbtn").style.display = "none";
+    };
+    //编辑时，先查询用户选择的某行数据，给modal赋值
+    function querysingledevice(id) {
+        document.getElementById("submitbtn").style.display = "none";
+        document.getElementById("editbtn").style.display = "block";
+
+        $.post("/MaintenanceInfo/querysinglerepair",
+                 {
+                     id: id
+                 },
+                  function (data) {
+                      //debugger;
+                      var str = data[0];
+                      document.getElementById("lineId").value = id;
+                      document.getElementById("devicenumber").value = str.DeviceInfo.DeviceNumber;
+                      document.getElementById("devicenumber").disabled = true;
+                      document.getElementById("devicename").value = str.DeviceInfo.DeviceName;
+                      document.getElementById("devicename").disabled = true;
+                      document.getElementById("myModalLabel").innerHTML = "编辑维修记录";
+                    
+                      document.getElementById("content").value = str.Content;
+                      document.getElementById("faulttime").value = str.FaultTime;
+                      document.getElementById("faultdescrip").value = str.FaultDecription;
+                      document.getElementById("faulttime").disabled = true;
+                      document.getElementById("faulttimebtn").disabled = true;
+                     
+                      document.getElementById("faultdescrip").disabled = true;
+                      document.getElementById("person").value = str.Person;
+                      document.getElementById("remark").value = str.Remark;
+                      switch (str.Status) {
+                          case 'P': document.getElementById("statusip").value = '未维修'; break;
+                          case 'O': document.getElementById("statusip").value = '进行中'; break;
+                          case 'D': document.getElementById("statusip").value = '已完成'; break;
+                          case 'N': document.getElementById("statusip").value = '不可用'; break;
+                      }
+                      $('#addNewPlanModal').modal('show');
+                  }
+        );
+    }
+
+</script>
+
+<!-- place code here -->
+<h2>维修记录</h2>
+<body>
+    <ol class="breadcrumb" style="background:none">
+        <li><a href="#">设备管理</a></li>
+        <li><a href="#">维修保养</a></li>
+        <li class="active">维修记录</li>
+    </ol>
+    <hr />
+    <form method="post" action="/MaintenanceInfo/Repair">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon">设备编号</span>
+                    <input name="devicenum" type="text" class="form-control" placeholder="设备编号" id="dnum" value="@ViewData["devicenum"]">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon">操作员工</span>
+                    <input name="person" type="text" class="form-control" placeholder="操作员工" id="operator" value="@ViewData["person"]">
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding-top:15px">
+            <div class="col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon">维修进度</span>
+                    <select class="form-control" name="statuses">
+                        @{
+                            if (ViewData["statuses"] == null || ViewData["statuses"].ToString() == "全部")
+                            {
+                                <option selected="selected">全部</option>
+                                <option>未维修 </option>
+                                    <option>进行中 </option>
+                                    <option>已完成 </option>
+                                    <option>不可用 </option>
+                            }
+                            else
+                            {
+                                if (ViewData["statuses"].ToString() == "未维修")
+                                {
+                                    <option>全部 </option>
+                                    <option selected="selected">未维修 </option>
+                                        <option>进行中 </option>
+                                        <option>已完成 </option>
+                                        <option>不可用 </option>
+                                }
+                                else if (ViewData["statuses"].ToString() == "进行中")
+                                {
+                                    <option>全部 </option>
+                                    <option>未维修 </option>
+                                        <option selected="selected">进行中 </option>
+                                        <option>已完成 </option>
+                                        <option>不可用 </option>
+                                }
+                                else if (ViewData["statuses"].ToString() == "已完成")
+                                {
+                                    <option>全部 </option>
+                                    <option>未维修 </option>
+                                        <option>进行中 </option>
+                                        <option selected="selected">已完成 </option>
+                                        <option>不可用 </option>
+                                }
+                                else if (ViewData["statuses"].ToString() == "不可用")
+                                {
+                                    <option>全部 </option>
+                                    <option>未维修 </option>
+                                        <option>进行中 </option>
+                                        <option>已完成 </option>
+                                        <option selected="selected">不可用 </option>
+                                }
+                            }
+
+                        }
+
+
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon">开始时间</span>
+                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" value="@ViewData["startTime"]"  name="startTime">
+                        @*<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>*@
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon">结束时间</span>
+                    <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="16" type="text" value="@ViewData["endTime"]"  name="endTime">
+
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 pull-right" style="padding-right:15px">
+                <div style="display:inline;padding-left:15px">
+                    <button class="btn btn-primary" type="submit" id="searchbtn">
+                        <div class="glyphicon glyphicon-search"></div>
+                        查询
+                    </button>
+                </div>
+                <div style="display:inline;padding-left:15px">
+                    <button class="btn btn-primary " data-toggle="modal" onclick="adddevice()"
+                            data-target="#addNewPlanModal">
+                        <div class="glyphicon glyphicon-plus"></div>
+                        添加
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr />
+    @*表格*@
+    <div class="row" id="tablepanel">
+        <div class="col-md-12">
+            <h3 style="font-weight:400">查询结果</h3>
+            <table class="table table-hover table-bordered table-condensed table-striped">
+                <caption></caption>
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>设备编号</th>
+                        <th>设备名称</th>
+                        <th>故障时间</th>
+                        <th>故障描述</th>
+                        <th>状态</th>
+                        <th>维修时间</th>
+                        <th>操作员</th>
+                        <th>维修内容</th>
+                        <th>备注</th>
+                        <th>
+                            编辑/删除
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.DeviceInfo.DeviceNumber</td>
+                            <td>@item.DeviceInfo.DeviceName</td>
+                            <td>@item.FaultTime</td>
+                            <td>@item.FaultDescription</td>
+                            @switch(item.Status)
+                            {
+                                case "P":
+                                    <td>未维修</td>;
+                                    break;
+                                case "O":
+                                    <td>进行中</td>; break;
+                                case "D":
+                                    <td>已完成</td>; break;
+                                case "N":
+                                    <td>不可用</td>; break;
+                            }
+
+                            <td>@item.RepairTime</td>
+                            <td>@item.Persons</td>
+                            <td>@item.Content</td>
+                            <td>@item.Remark</td>
+                            <td>
+                                <div>
+                                    <button class="btn btn-success glyphicon glyphicon-edit" title="编辑该行" onclick="querysingledevice('@item.Id')"></button>
+                                    <button class="btn btn-danger glyphicon glyphicon-trash" title="删除该行" onclick="deletewarning('@item.Id')"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+        @*分页控件*@
+        <div class="col-lg-12">
+            @if ((int)ViewData["TotalPage"] > 1) //超过一页时在加载分页控件
+            {
+                var totalPages = (int)ViewData["TotalPage"];
+                var currentPage = (int)ViewData["CurrentPage"];
+
+                <nav style="text-align: center">
+                    <ul class="pagination">
+                        @if (currentPage <= 1)
+                        {
+                            <li class="disabled"><a class="btn">&laquo;</a></li>
+                        }
+                        @if (currentPage > 1)
+                        {
+                            <li onclick="paging(@currentPage-1)"><a class="btn">&laquo;</a></li>
+                        }
+                        @{
+                            int firstPageNumber, lastPageNumber;
+                            if (currentPage <= 2)
+                            {
+                                firstPageNumber = 1;
+                                lastPageNumber = totalPages <= 5 ? totalPages : 5;
+                            }
+                            else
+                            {
+                                if (totalPages - currentPage < 2)
+                                {
+                                    firstPageNumber = totalPages - 4;
+                                    lastPageNumber = totalPages;
+                                }
+                                else
+                                {
+                                    firstPageNumber = currentPage - 2;
+                                    lastPageNumber = (totalPages <= (currentPage + 2)) ? totalPages : (currentPage + 2);
+                                }
+
+                            }
+                            for (var i = firstPageNumber; i <= lastPageNumber; i++)
+                            {
+                                if (i == currentPage)
+                                {
+                                    <li class="active"><a class="btn">@i</a></li>
+                                }
+                                else
+                                {
+                                    <li onclick="paging(@i)"><a class="btn">@i</a></li>
+                                }
+                            }
+                        }
+                        @if (currentPage >= totalPages)
+                        {
+                            <li class="disabled"><a class="btn">&raquo;</a></li>
+                        }
+                        @if (currentPage < totalPages)
+                        {
+                            <li onclick="paging(@currentPage+1)"><a class="btn">&raquo;</a></li>
+                        }
+                    </ul>
+                </nav>
+                            }
+        </div>
+
+    </div>
+
+    @*分页*@
+    <div class="row"></div>
+    @*模态框脚本*@
+    <script type="text/javascript">
+        function ontextchanged(inputid) {
+            if ($(inputid).val() != "") {
+                document.getElementById(inputid).style.color = "black";
+                document.getElementById('stutaslabel').innerText = "";
+            }
+        }
+        $(document).ready(function () {
+            $("#submitbtn").click(function () {
+                if ($("#devicenumber").val() == "" && $("#devicename").val() == "") {
+
+                    document.getElementById('stutaslabel').innerText = "设备编号、名称，请至少选择一项!";
+                    //document.getElementById('devicenumDiv').style.color = "red";
+                    return;
+                }
+
+                $.post("/MaintenanceInfo/addrepair",
+               {
+               
+                   DeviceInfo: {
+                       DeviceNumber: $("#devicenumber").val(),
+                       DeviceName: $("#devicename").val(),
+                   },
+                   
+                   FaultTime: $("#faulttime").val(),
+                   FaultDescription:$("#faultdescrip").val(),
+                   Person: $("#person").val(),
+                   RepairTime:$("#repairtime").val(),
+                   Status: 'P',
+                   //新增时状态都为"等待保养"
+                   Content: $("#content").val(),
+                   Remark: $("#remark").val(),
+                   CreationDate: new Date().toLocaleTimeString(),
+                   CreationUserId: 1,
+               },
+               function (status) {
+                   if (status == '添加成功') {
+                       $('#addNewPlanModal').modal('hide');
+                   }
+                   else {
+                       alertinfo("添加失败：",status)
+                   
+                   }
+                 
+               });
+            });
+        });
+
+        $(document).ready(function () {
+            $("#editbtn").click(function () {
+                if ($("#devicenumber").val() == "" && $("#devicename").val() == "") {
+
+                    document.getElementById('stutaslabel').innerText = "设备编号、名称，请至少选择一项!";
+                    //document.getElementById('devicenumDiv').style.color = "red";
+                    return;
+                }
+
+                $.post("/MaintenanceInfo/editrepair",
+               {
+                   Id: $("#lineId").val(),
+                 
+
+                   DeviceInfo: {
+                       DeviceNumber: $("#devicenumber").val(),
+                       DeviceName: $("#devicename").val(),
+                   },
+                   FaultTime: $("#faulttime").val(),
+                   FaultDescription: $("#faultdescrip").val(),
+                   Person: $("#person").val(),
+                   RepairTime: $("#repairtime").val(),
+                   Status: 'P',
+                   //编辑时传入目前的状态，后台进行状态更改
+                   Content: $("#content").val(),
+                   Remark: $("#remark").val(),
+
+               },
+               function (status) {
+                   if (status == '修改成功') {
+                       document.getElementById("devicenumber").readOnly = false; // 更改readonly 供新增使用
+                       $('#addNewPlanModal').modal('hide');
+                       location.reload();
+                   }
+                   else {
+                       alertinfo("修改失败：", status)
+
+                   }
+               });
+            });
+        });
+
+        function centerModals() {
+            $("#addNewPlanModal").each(function (i) {
+                var $clone = $(this).clone().css('display', 'block').appendTo('body'); var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
+                top = top > 0 ? top : 0;
+                $clone.remove();
+                $(this).find('.modal-content').css("margin-top", top);
+            });
+        }
+        $('#myModal').on('show.bs.modal', centerModals);
+        $(window).on('resize', centerModals);
+
+
+        function centerDeleteModals() {
+            $("#deletemodal").each(function (i) {
+                var $clone = $(this).clone().css('display', 'block').appendTo('body'); var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
+                top = top > 0 ? top : 0;
+                $clone.remove();
+                $(this).find('.modal-content').css("margin-top", top);
+            });
+        }
+        $('#myModal').on('show.bs.modal', centerModals);
+        $(window).on('resize', centerModals);
+
+        function centerInfoModals() {
+            $("#infomodal").each(function (i) {
+                var $clone = $(this).clone().css('display', 'block').appendTo('body'); var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);
+                top = top > 0 ? top : 0;
+                $clone.remove();
+                $(this).find('.modal-content').css("margin-top", top);
+            });
+        }
+        $('#myModal').on('show.bs.modal', centerModals);
+        $(window).on('resize', centerModals);
+    </script>
+    @*modal框  添加 编辑界面*@
+    <div class="modal fade" id="addNewPlanModal" tabindex="-1" role="dialog" onshow="centerModals()"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:800px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <label class="modal-title" id="myModalLabel" style="font-weight:bold;font-size:20px">
+                        添加保养记录
+                    </label>
+                    <input id="lineId" style="visibility:hidden" />
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-inline">
+                            <div class="form-group" id="devicenumDiv">
+                                <label style="width:100px;text-align:center">设备编号</label>
+                                <input class="form-control" id="devicenumber" type="text" style="width:200px;" placeholder="编号" onchange="ontextchanged('devicenumDiv')">
+                            </div>
+                            <div class="form-group" id="devicenameDiv">
+                                <label style="width:100px;text-align:center">设备名称</label>
+                                <input class="form-control" id="devicename" type="text" style="width:200px" placeholder="名称" onchange="ontextchanged('devicenameDiv')">
+                            </div>
+                        </div>
+                        <hr />
+
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label style="width:100px;text-align:center">故障时间</label>
+                                <div style="display:inline-table;">
+                                    <div class="input-group" >
+                                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2"
+                                             data-link-format="yyyy-mm-dd" style="width:200px;">
+                                            <input class="form-control" size="16" type="text" value="" readonly id="faulttime" style="width:161px;">
+                                            <span class="input-group-addon"  id="faulttimebtn"><span class="glyphicon glyphicon-calendar" ></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label style="width:100px;text-align:center">故障描述</label>
+                                <input class="form-control" id="faultdescrip" type="text" style="width:200px" placeholder="故障描述">
+                            </div>
+                        </div>
+                        <hr />
+
+
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label style="width:100px;text-align:center">维修时间</label>
+                                <div style="display:inline-table;">
+                                    <div class="input-group">
+                                        <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2"
+                                             data-link-format="yyyy-mm-dd" style="width:200px;" id="repairtimebtn">
+                                            <input class="form-control" size="16" type="text" value="" readonly id="repairtime" style="width:161px;">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label style="width:100px;text-align:center;">维修内容</label>
+                                <input class="form-control" id="content" type="text" style="width:200px" placeholder="操作员工">
+                            </div>
+                           
+
+                           
+
+                        </div>
+                        <hr />
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label style="width:100px;text-align:center;">操作员工</label>
+                                <input class="form-control" id="person" type="text" style="width:200px" placeholder="操作员工">
+                            </div>
+                            <div class="form-group">
+                                <label style="width:100px;text-align:center">备注</label>
+                                <input class="form-control" id="remark" type="text" style="width:200px" placeholder="备注">
+                            </div>
+
+                        </div>
+                        <hr/>
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label style="width:100px;text-align:center">
+                                    当前状态
+                                </label>
+                                <input class="form-control" id="statusip" type="text" style="width:200px" placeholder="备注" readonly="readonly">
+
+                            </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                @*信息栏，提示是否有非法字符*@
+                                <div class="pull-left" style="padding-left:30px">
+                                    <label id="stutaslabel" style="width:200px;padding-top:5px;text-align:center;color:#ff0000"></label>
+                                </div>
+
+                                <button type="button" id="submitbtn" class="btn btn-primary pull-right" value="AddDevice" style="margin-left:20px">
+                                    <div class="glyphicon glyphicon-ok-circle"></div>
+                                    添加计划
+                                </button>
+                                <button type="button" id="editbtn" class="btn btn-primary  pull-right" value="EditDevice" style="margin-left:20px">
+                                    <div class="glyphicon glyphicon-ok-circle"></div>
+                                    更新进度
+                                </button>
+
+                                <button type="button" class="btn btn-danger  pull-right" id="cancelbtn"
+                                        data-dismiss="modal">
+                                    <div class="glyphicon glyphicon-remove"></div>
+                                    取消
+                                </button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*删除确认框*@
+    <div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" onshow="centerDeleteModals()"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:400px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h3 class="modal-title" id="myModalLabel1" style="font-weight:bold">
+                        提醒
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div id="warningcontainer">
+                        <h5>即将删除记录：</h5>
+                        <p id="recordidlabel"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        <div class="glyphicon glyphicon-remove"></div>
+                        取消
+                    </button>
+                    <button type="button" id="comfirmdelbtn" class="btn btn-danger" onclick="deleteline()">
+                        <div class="glyphicon glyphicon-trash"></div>
+                        删除
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @*信息提示框 用于错误处理*@
+    <div class="modal fade" id="infomodal" tabindex="-1" role="dialog" onshow="centerInfoModals()"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:400px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h3 class="modal-title" id="myModalLabel1" style="font-weight:bold">
+                        错误！
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <div id="warningcontainer">
+                        <h5 id="infotitle">提示头</h5>
+                        <p id="infobody">提示主体</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger"
+                            data-dismiss="modal">
+                        <div class="glyphicon glyphicon-exclamation-sign"></div>
+                        确定
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script type="text/javascript">
+
+    $('.form_date').datetimepicker({
+        language: 'zh-CN',
+        format: 'yyyy/mm/dd',
+        orientation: "auto",
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        minView: 2,
+        forceParse: 0
+    });
+
+</script>

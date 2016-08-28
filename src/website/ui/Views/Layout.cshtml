@@ -1,0 +1,185 @@
+﻿@using Dade.Dms.Website.Configuration;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" href="/content/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/content/site.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap-datetimepicker.css" />
+    <script src="/Scripts/modernizr-2.6.2.js"></script>
+    <script src="/Scripts/jquery-1.10.2.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/Scripts/respond.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="~/Scripts/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+            overflow: auto;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#navbar-items">
+
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Home">@UIConfigurationManager.GetResource("product-name")</a>
+            </div>
+
+
+            <div class="navbar-collapse collapse" id="navbar-items">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            主页
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">分公司一</a></li>
+                            <li><a href="#">分公司二</a></li>
+                            <li><a href="#">报警信息悬浮窗口</a></li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            基础信息
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">客户管理</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">经销商渠道管理</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">产品管理</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">备件管理</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">服务管理</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">设备维修保养管理</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            设备管理
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li><a style="padding:8px">设备台账</a></li>
+                            <li><a href="/DeviceInfo/Index">设备信息</a></li>
+                            <li><a href="/DeviceInfo/Status">运行状态</a></li>
+                            <li><a href="/DeviceInfo/Statistics">设备统计</a></li>
+
+                            <li class="divider"></li>
+                            <li><a style="padding:8px">维修保养</a></li>
+                            <li><a href="/MaintenanceInfo/Plan">保养计划</a></li>
+                            <li><a href="/MaintenanceInfo/Record">保养记录</a></li>
+                            <li><a href="/MaintenanceInfo/Record">点检巡查</a></li>
+                            <li><a href="/MaintenanceInfo/Repair">故障维修</a></li>
+
+                            <li class="divider"></li>
+                            <li><a style="padding:8px">备件管理</a></li>
+                            <li><a href="#"> ·备件管理</a></li>
+                            <li><a href="#"> ·备件申请</a></li>
+                            <li><a href="#"> ·备件采购</a></li>
+                            <li><a href="#"> ·备件出入库</a></li>
+                            <li><a href="#"> ·备件返回</a></li>
+                            <li><a href="#"> ·备件验证管理</a></li>
+
+                            <li class="divider"></li>
+                            <li><a style="padding:8px">条码管理</a></li>
+                            <li><a href="#"> ·查询设备</a></li>
+                            <li><a href="#"> ·查询备件</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            售后服务
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">售后服务台</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">现场维修服务</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">远程服务</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            设备监控
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a style="padding:8px" href="/Monitor/Index">实时监控</a></li>
+                            <li><a href="/Monitor/RuntimeParam">运行参数</a></li>
+                            <li><a href="/Monitor/MoveRate">移动率</a></li>
+                            <li><a href="/Monitor/PowerControl">能耗管理</a></li>
+
+                            <li class="divider"></li>
+                            <li><a style="padding:8px">设备异常</a></li>
+                            <li><a href="/Monitor/Alert">异常报警</a></li>
+                            <li><a href="/Monitor/Handle">异常处理</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            系统设置
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">公司架构</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">权限设置</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">密码设置</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                @*@Html.Partial("_LoginPartial")*@
+                @*登录、注册 后续添加*@
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr/>
+        <footer>
+            <p style="text-align:center">@UIConfigurationManager.GetResource("page-footer")</p>
+        </footer>
+    </div>
+
+    
+</body>
+</html>

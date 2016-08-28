@@ -1,0 +1,137 @@
+﻿
+@{
+    ViewBag.Title = "DMS System-" + "运行状态";
+    Layout = "~/Views/Layout.cshtml";
+}
+
+<h2>运行状态</h2>
+<body>
+    <ol class="breadcrumb" style="background:none">
+        <li><a href="#">设备管理</a></li>
+        <li><a href="#">设备台账</a></li>
+        <li class="active">运行状态</li>
+    </ol>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">设备编号</span>
+                <input type="text" class="form-control" placeholder="设备编号">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="input-group">
+                <span class="input-group-addon">设备名称</span>
+                <input type="text" class="form-control" placeholder="设备名称">
+            </div>
+        </div>
+       
+
+        <div class="col-md-1 pull-right">
+            <button class="btn btn-primary">
+                <div class="glyphicon glyphicon-search"></div>
+                查询
+            </button>
+        </div>
+        @*<div class="col-md-1  pull-right">
+                <button class="btn btn-primary" data-toggle="modal"
+                        data-target="#addNewEquipModal">
+                    <div class="glyphicon glyphicon-plus">
+                    </div>
+                    添加
+                </button>
+            </div>*@
+    </div>
+
+    <hr/>
+
+    @*表格*@
+    <div class="row" id="tablepanel">
+        <div class="col-md-12">
+            <h3 style="font-weight:400">查询结果</h3>
+            <table class="table table-hover table-bordered table-condensed table-striped">
+                <caption></caption>
+                <thead>
+                    <tr>
+                        <th>设备名称</th>
+                        <th>设备厂商</th>
+                        <th>设备型号</th>
+                        <th>出厂日期</th>
+                        <th>设备归类</th>
+                        <th>设备编号</th>
+                        <th>运行状态</th>
+                        <th>
+                            编辑/删除
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td style="color:#1f9719;font-weight:bold;">正常运行</td>
+                        <td>
+                            <div>
+                                <button class="btn btn-success glyphicon glyphicon-edit "></button>
+                                <button class="btn btn-danger glyphicon glyphicon-remove"></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td style="color:#1f9719;font-weight:bold;">正常运行</td>
+                        <td>
+                            <div>
+                                <button class="btn btn-success glyphicon glyphicon-edit "></button>
+                                <button class="btn btn-danger glyphicon glyphicon-remove"></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td>Tanmay</td>
+                        <td>Bangalore</td>
+                        <td>560001</td>
+                        <td style="color:palevioletred;font-weight:bold;">故障</td>
+                        <td>
+                            <div>
+                                <button class="btn btn-success glyphicon glyphicon-edit "></button>
+                                <button class="btn btn-danger glyphicon glyphicon-remove"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-offset-4 col-lg-3">
+            <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li class="disabled"><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </div>
+    </div>
+
+    @*分页*@
+    <div class="row">
+
+
+    </div>
+
+
+</body>

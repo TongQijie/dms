@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2A1EF5E3-FB1B-4EF0-809B-205F280DF3D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dade.Dms.Rest.ServiceImplement</RootNamespace>
+    <AssemblyName>implement</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\host\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="petecat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ref\petecat.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnyServiceBase.cs" />
+    <Compile Include="DeviceInfoService.cs" />
+    <Compile Include="InspectionInfoService.cs" />
+    <Compile Include="MaintenanceInfoService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepairInfoService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\impl\deviceinfo\deviceinfo.csproj">
+      <Project>{9808ff61-bbc0-418b-b477-9af470f9055b}</Project>
+      <Name>deviceinfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\impl\devicestateinfo\devicestateinfo.csproj">
+      <Project>{bd39203c-c773-40ee-8a1b-5e9a66bd3a6f}</Project>
+      <Name>devicestateinfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\impl\inspectioninfo\inspectioninfo.csproj">
+      <Project>{364e6638-7e33-474f-9346-b3192c020ea9}</Project>
+      <Name>inspectioninfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\impl\maintenanceinfo\maintenanceinfo.csproj">
+      <Project>{e479ecda-9253-4723-b0a2-84ab545ab278}</Project>
+      <Name>maintenanceinfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\impl\repairinfo\devicerepairinfo.csproj">
+      <Project>{faf511aa-b6f4-4e42-a8de-407c2cfe642c}</Project>
+      <Name>devicerepairinfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\interface\interface.csproj">
+      <Project>{ce03bc90-e59a-4301-b13f-b67a6b1b0491}</Project>
+      <Name>interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\model\servicemodel.csproj">
+      <Project>{1835d767-04fe-4649-926a-ce091de0bace}</Project>
+      <Name>servicemodel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
