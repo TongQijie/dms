@@ -26,22 +26,22 @@ namespace Dade.Dms.Rest.ServiceImplement
 
         public RestServiceResponse<MaintenancePlan> OperateMaintenancePlan(RestServiceRequest<MaintenancePlan> request)
         {
-            return _PlanImpl.OperateMaintenancePlan(request);
+            return Sandbox(request, _PlanImpl.OperateMaintenancePlan);
         }
 
         public RestServiceResponse<MaintenancePlan[]> GetMaintenancePlanList(RestServiceRequest request)
         {
-            return _PlanImpl.GetMaintenancePlanList(request);
+            return Sandbox(request, _PlanImpl.GetMaintenancePlanList);
         }
 
         public RestServiceResponse<MaintenanceRecord> OperateMaintenanceRecord(RestServiceRequest<MaintenanceRecord> request)
         {
-            return _RecordImpl.OperateMaintenanceRecord(request);
+            return Sandbox(request, _RecordImpl.OperateMaintenanceRecord);
         }
 
         public RestServiceResponse<MaintenanceRecord[]> GetMaintenanceRecordList(RestServiceRequest request)
         {
-            return _RecordImpl.GetMaintenanceRecordList(request);
+            return Sandbox(request, _RecordImpl.GetMaintenanceRecordList);
         }
     }
 }

@@ -2,7 +2,11 @@
 using Dade.Dms.Rest.ServiceModel.Services;
 using Petecat.IoC.Attributes;
 using Dade.Dms.Rest.Impl.Repository;
+using Dade.Dms.Rest.ModelTransfer;
 using Petecat.Extension;
+using Dade.Dms.Rest.ServiceModel.Errors;
+
+using System.Linq;
 
 namespace Dade.Dms.Rest.Impl.Business
 {
@@ -22,16 +26,18 @@ namespace Dade.Dms.Rest.Impl.Business
                 || !request.Body.DeviceNumber.HasValue() 
                 || !request.Body.DeviceName.HasValue())
             {
-                throw new RestException("", "device number and device name cannot be empty.");
+                throw new RequestDataInvalidException("DeviceNumber", "DeviceName");
             }
 
-            var retVal = _DeviceInfoRepository.AddDevice(request.Body);
+            var retVal = _DeviceInfoRepository.AddDevice(DeviceInfoTransfer.BuildDeviceInfoSource(request.Body),
+                DeviceSparePartTransfer.BuildDeviceSparePartSources(request.Body.DeviceSpareParts),
+                DeviceCheckPointTransfer.BuildDeviceCheckpointSources(request.Body.DeviceCheckpoints));
             if (retVal < 0)
             {
                 switch (retVal)
                 {
-                    case -1: throw new RestException("", string.Format("device number '{0}' already exists.", request.Body.DeviceNumber));
-                    default: throw new RestException("", "undefined error.");
+                    case -1: throw new DeviceAlreadyExistedException(request.Body.DeviceNumber);
+                    default: throw new UndefinedException(retVal);
                 }
             }
 
@@ -44,16 +50,18 @@ namespace Dade.Dms.Rest.Impl.Business
                 || !request.Body.DeviceNumber.HasValue()
                 || !request.Body.DeviceName.HasValue())
             {
-                throw new RestException("", "device number and device name cannot be empty.");
+                throw new RequestDataInvalidException("DeviceNumber", "DeviceName");
             }
 
-            var retVal = _DeviceInfoRepository.EditDevice(request.Body);
+            var retVal = _DeviceInfoRepository.EditDevice(DeviceInfoTransfer.BuildDeviceInfoSource(request.Body),
+                DeviceSparePartTransfer.BuildDeviceSparePartSources(request.Body.DeviceSpareParts),
+                DeviceCheckPointTransfer.BuildDeviceCheckpointSources(request.Body.DeviceCheckpoints));
             if (retVal < 0)
             {
                 switch (retVal)
                 {
-                    case -1: throw new RestException("", string.Format("device number '{0}' dones not exist.", request.Body.DeviceNumber));
-                    default: throw new RestException("", "undefined error.");
+                    case -1: throw new DeviceNotFoundException(request.Body.DeviceNumber);
+                    default: throw new UndefinedException(retVal);
                 }
             }
         }
@@ -65,25 +73,51 @@ namespace Dade.Dms.Rest.Impl.Business
                 throw new RestException("", "device number cannot be empty.");
             }
 
-            var retVal = _DeviceInfoRepository.DeleteDevice(request.Body);
+            var retVal = _DeviceInfoRepository.DeleteDevice(DeviceInfoTransfer.BuildDeviceInfoSource(request.Body));
             if (retVal < 0)
             {
                 switch (retVal)
                 {
-                    case -1: throw new RestException("", string.Format("device number '{0}' does not exist.", request.Body.DeviceNumber));
-                    default: throw new RestException("", "undefined error.");
+                    case -1: throw new DeviceNotFoundException(request.Body.DeviceNumber);
+                    default: throw new UndefinedException(retVal);
                 }
             }
         }
 
-        public void QueryDevicesByConditions(RestServiceRequest request, RestServiceResponse<DeviceInfo[]> response)
+        public void QueryBriefDevices(RestServiceRequest request, RestServiceResponse<DeviceInfo[]> response)
         {
             response.Paging = request.Paging;
 
-            response.Body = _DeviceInfoRepository.QueryDevicesByConditions(
+            response.Body = DeviceInfoTransfer.BuildDeviceInfos(_DeviceInfoRepository.QueryDeviceInfos(
                 request.Paging, 
                 request.GetValue("DeviceNumber"),
-                request.GetValue("DeviceName"));
+                request.GetValue("DeviceName")));
+        }
+
+
+        public void QueryDetailDevices(RestServiceRequest request, RestServiceResponse<DeviceInfo[]> response)
+        {
+            response.Paging = request.Paging;
+
+            var deviceInfos = DeviceInfoTransfer.BuildDeviceInfos(_DeviceInfoRepository.QueryDeviceInfos(
+                request.Paging,
+                request.GetValue("DeviceNumber"),
+                request.GetValue("DeviceName")));
+
+            var deviceCheckpoints = DeviceCheckPointTransfer.BuildDeviceCheckpoints(
+                _DeviceInfoRepository.QueryDeviceCheckpoints(deviceInfos.Select(x => x.DeviceNumber).ToArray()));
+
+            var deviceSparePartDeviceInfoMappings = DeviceSparePartDeviceInfoMappingTransfer.BuildDeviceSparePartDeviceInfoMappings(
+                _DeviceInfoRepository.QueryDeviceSpareParts(deviceInfos.Select(x => x.DeviceNumber).ToArray()));
+
+            foreach (var deviceInfo in deviceInfos)
+            {
+                deviceInfo.DeviceCheckpoints = deviceCheckpoints.Where(x => x.DeviceInfo != null && x.DeviceInfo.DeviceNumber == deviceInfo.DeviceNumber).ToArray();
+                deviceInfo.DeviceSpareParts = deviceSparePartDeviceInfoMappings.Where(x => x.DeviceInfo != null && x.DeviceInfo.DeviceNumber == deviceInfo.DeviceNumber)
+                    .Select(x => x.DeviceSparePart).ToArray();
+            }
+
+            response.Body = deviceInfos;
         }
     }
 }

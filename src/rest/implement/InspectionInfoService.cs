@@ -29,22 +29,22 @@ namespace Dade.Dms.Rest.ServiceImplement
 
         public RestServiceResponse<InspectionPlan> OperateInspectionPlan(RestServiceRequest<InspectionPlan> request)
         {
-            return _InspectionPlanImpl.OperateInspectionPlan(request);
+            return Sandbox(request, _InspectionPlanImpl.OperateInspectionPlan);
         }
 
         public RestServiceResponse<InspectionPlan[]> GetInspectionPlanList(RestServiceRequest<InspectionPlan> request)
         {
-            return _InspectionPlanImpl.GetInspectionPlanList(request);
+            return Sandbox(request, _InspectionPlanImpl.GetInspectionPlanList);
         }
 
         public RestServiceResponse<InspectionRecord> OperateInspectionRecord(RestServiceRequest<InspectionRecord> request)
         {
-            return _InspectionRecordImpl.OperateInspectionRecord(request);
+            return Sandbox(request, _InspectionRecordImpl.OperateInspectionRecord);
         }
 
         public RestServiceResponse<InspectionRecord[]> GetInspectionRecordList(RestServiceRequest request)
         {
-            return _InspectionRecordImpl.GetInspectionRecordList(request);
+            return Sandbox(request, _InspectionRecordImpl.GetInspectionRecordList);
         }
     }
 }

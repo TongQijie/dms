@@ -44,6 +44,8 @@
     <Compile Include="DeviceOperationData.cs" />
     <Compile Include="DeviceRepairRecord.cs" />
     <Compile Include="DeviceSparePart.cs" />
+    <Compile Include="DeviceSparePartDeviceInfoMapping.cs" />
+    <Compile Include="Enums\DayOfWeek.cs" />
     <Compile Include="Enums\DeviceAlarmRecordSeverity.cs" />
     <Compile Include="Enums\DeviceCheckpointFlag.cs" />
     <Compile Include="Enums\DeviceInfoStatus.cs" />
@@ -56,6 +58,12 @@
     <Compile Include="Enums\MaintenancePlanScheduleType.cs" />
     <Compile Include="Enums\MaintenancePlanStatus.cs" />
     <Compile Include="Enums\MaintenanceRecordStatus.cs" />
+    <Compile Include="Errors\ActionNotSupportedException.cs" />
+    <Compile Include="Errors\DeviceAlreadyExistedException.cs" />
+    <Compile Include="Errors\DeviceNotFoundException.cs" />
+    <Compile Include="Errors\ErrorCodes.cs" />
+    <Compile Include="Errors\RequestDataInvalidException.cs" />
+    <Compile Include="Errors\UndefinedException.cs" />
     <Compile Include="FoundationInfo.cs" />
     <Compile Include="InspectionPlan.cs" />
     <Compile Include="InspectionRecord.cs" />

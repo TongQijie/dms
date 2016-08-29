@@ -41,6 +41,7 @@
     <Compile Include="DeviceFaultCategorySource.cs" />
     <Compile Include="DeviceInfoSource.cs" />
     <Compile Include="DeviceRepairRecordSource.cs" />
+    <Compile Include="DeviceSparePartDeviceInfoMappingSource.cs" />
     <Compile Include="DeviceSparePartSource.cs" />
     <Compile Include="FoundationInfoSource.cs" />
     <Compile Include="InspectionPlanSource.cs" />

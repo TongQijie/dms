@@ -41,6 +41,7 @@
     <Compile Include="IInspectionInfoService.cs" />
     <Compile Include="IMaintenanceInfoService.cs" />
     <Compile Include="IDeviceRepairInfoService.cs" />
+    <Compile Include="ISparePartInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

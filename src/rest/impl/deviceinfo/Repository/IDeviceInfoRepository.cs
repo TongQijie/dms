@@ -1,16 +1,21 @@
-﻿using Dade.Dms.Rest.ServiceModel;
+﻿using Dade.Dms.Repo.DataModel;
+using Dade.Dms.Rest.ServiceModel;
 using Dade.Dms.Rest.ServiceModel.Services;
 
 namespace Dade.Dms.Rest.Impl.Repository
 {
     public interface IDeviceInfoRepository
     {
-        int AddDevice(DeviceInfo deviceInfo);
+        int AddDevice(DeviceInfoSource deviceInfo, DeviceSparePartSource[] deviceSparePartSources, DeviceCheckpointSource[] deviceCheckpointSources);
 
-        int EditDevice(DeviceInfo deviceInfo);
+        int EditDevice(DeviceInfoSource deviceInfo, DeviceSparePartSource[] deviceSparePartSources, DeviceCheckpointSource[] deviceCheckpointSources);
 
-        int DeleteDevice(DeviceInfo deviceInfo);
+        int DeleteDevice(DeviceInfoSource deviceInfo);
 
-        DeviceInfo[] QueryDevicesByConditions(Paging paging, string deviceNumber, string deviceName);
+        DeviceInfoSource[] QueryDeviceInfos(Paging paging, string deviceNumber, string deviceName);
+
+        DeviceSparePartDeviceInfoMappingSource[] QueryDeviceSpareParts(string[] deviceNumber);
+
+        DeviceCheckpointSource[] QueryDeviceCheckpoints(string[] deviceNumber);
     }
 }

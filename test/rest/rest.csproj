@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestTest_CommonTest.cs" />
     <Compile Include="RestTest_DeviceInfo.cs" />
     <Compile Include="RestTest_InspectionPlan.cs" />
     <Compile Include="RestTest_InspectionRecord.cs" />
@@ -48,6 +49,10 @@
     <Compile Include="RestTest_RepairRecord.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\rest\impl\common\common.csproj">
+      <Project>{598853d5-3feb-41f9-8347-7144d044cc6b}</Project>
+      <Name>common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\rest\model\servicemodel.csproj">
       <Project>{1835d767-04fe-4649-926a-ce091de0bace}</Project>
       <Name>model</Name>

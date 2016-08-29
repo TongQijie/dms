@@ -1,6 +1,6 @@
 ﻿using Petecat.Data.Attributes;
 
-namespace Dade.Dms.Repo.RepoModel
+namespace Dade.Dms.Repo.DataModel
 {
     public class DeviceAlarmRecordSource
     {

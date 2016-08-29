@@ -24,12 +24,12 @@ namespace Dade.Dms.Rest.ServiceImplement
 
         public RestServiceResponse<DeviceRepairRecord> OperateRepairRecord(RestServiceRequest<DeviceRepairRecord> request)
         {
-            return _RepairRecordImpl.OperateRepairRecord(request);
+            return Sandbox(request, _RepairRecordImpl.OperateRepairRecord);
         }
 
         public RestServiceResponse<DeviceRepairRecord[]> GetRepairRecordList(RestServiceRequest request)
         {
-            return _RepairRecordImpl.GetMaintenanceRecordList(request);
+            return Sandbox(request, _RepairRecordImpl.GetMaintenanceRecordList);
         }
     }
 }

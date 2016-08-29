@@ -11,6 +11,7 @@ namespace Dade.Test.Rest
         static void Main(string[] args)
         {
             var test = new RestTest();
+            test.ScheduleHandlerTest();
             RunTest(test);
             Clean(test);
         }

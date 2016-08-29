@@ -1,5 +1,6 @@
 ﻿using Dade.Dms.Rest.Impl.Business;
 using Dade.Dms.Rest.ServiceModel;
+using Dade.Dms.Rest.ServiceModel.Errors;
 using Dade.Dms.Rest.ServiceModel.Services;
 using Petecat.IoC.Attributes;
 
@@ -24,7 +25,7 @@ namespace Dade.Dms.Rest.Impl
                 case "Add": _MaintenanceRecordBusiness.AddRecord(request, response); break;
                 case "Edit": _MaintenanceRecordBusiness.EditRecord(request, response); break;
                 case "Delete": _MaintenanceRecordBusiness.DeleteRecord(request, response); break;
-                default: throw new RestException("", string.Format("it does not support action '{0}'.", request.ActionName));
+                default: throw new ActionNotSupportedException(request.ActionName);
             }
 
             return response;
@@ -37,7 +38,7 @@ namespace Dade.Dms.Rest.Impl
             switch (request.ActionName)
             {
                 case "ByConditions": _MaintenanceRecordBusiness.QueryRecordsByConditions(request, response); break;
-                default: throw new RestException("", string.Format("it does not support action '{0}'.", request.ActionName));
+                default: throw new ActionNotSupportedException(request.ActionName);
             }
 
             return response;

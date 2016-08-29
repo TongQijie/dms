@@ -43,6 +43,7 @@
     <Compile Include="MaintenanceInfoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepairInfoService.cs" />
+    <Compile Include="SparePartInfoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\impl\deviceinfo\deviceinfo.csproj">
@@ -64,6 +65,10 @@
     <ProjectReference Include="..\impl\repairinfo\devicerepairinfo.csproj">
       <Project>{faf511aa-b6f4-4e42-a8de-407c2cfe642c}</Project>
       <Name>devicerepairinfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\impl\sparepartinfo\sparepartinfo.csproj">
+      <Project>{859e6f16-6cb0-481c-9aca-59b78a1efc6c}</Project>
+      <Name>sparepartinfo</Name>
     </ProjectReference>
     <ProjectReference Include="..\interface\interface.csproj">
       <Project>{ce03bc90-e59a-4301-b13f-b67a6b1b0491}</Project>

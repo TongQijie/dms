@@ -1,4 +1,4 @@
-﻿using Dade.Dms.Repo.RepoModel;
+﻿using Dade.Dms.Repo.DataModel;
 using Dade.Dms.Rest.ServiceModel;
 using Dade.Dms.Rest.ServiceModel.Enums;
 
@@ -34,6 +34,32 @@ namespace Dade.Dms.Rest.ModelTransfer
             deviceRepairRecord.Status = (DeviceRepairRecordStatus)typeof(DeviceRepairRecordStatus).GetEnumByValue(deviceRepairRecordSource.Status);
 
             return deviceRepairRecord;
+        }
+
+        public static DeviceRepairRecordSource BuildDeviceRepairRecordSource(DeviceRepairRecord deviceRepairRecord)
+        {
+            if (deviceRepairRecord == null)
+            {
+                return null;
+            }
+
+            var deviceRepairRecordSource = new DeviceRepairRecordSource();
+
+            deviceRepairRecordSource.Content = deviceRepairRecord.Content;
+            deviceRepairRecordSource.Description = deviceRepairRecordSource.Description;
+            deviceRepairRecordSource.DeviceAlarmRecord = DeviceAlarmRecordTransfer.BuildDeviceAlarmRecordSource(deviceRepairRecord.DeviceAlarmRecord);
+            deviceRepairRecordSource.DeviceInfo = DeviceInfoTransfer.BuildDeviceInfoSource(deviceRepairRecord.DeviceInfo);
+            deviceRepairRecordSource.FaultTime = Utility.ConvertDateTime(deviceRepairRecord.FaultTime);
+            deviceRepairRecordSource.Id = deviceRepairRecord.Id;
+            deviceRepairRecordSource.Persons = deviceRepairRecord.Persons;
+            deviceRepairRecordSource.Remark = deviceRepairRecord.Remark;
+            deviceRepairRecordSource.RepairBeginTime = Utility.ConvertDateTime(deviceRepairRecord.RepairBeginTime);
+            deviceRepairRecordSource.RepairEndTime = Utility.ConvertDateTime(deviceRepairRecord.RepairEndTime);
+            deviceRepairRecordSource.Severity = typeof(DeviceRepairRecordSeverity).GetValueByEnum(deviceRepairRecord.Severity);
+            deviceRepairRecordSource.Source = typeof(DeviceRepairRecordSourceType).GetValueByEnum(deviceRepairRecord.Source);
+            deviceRepairRecordSource.Status = typeof(DeviceRepairRecordStatus).GetValueByEnum(deviceRepairRecord.Status);
+
+            return deviceRepairRecordSource;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Dade.Dms.Repo.RepoModel;
+﻿using Dade.Dms.Repo.DataModel;
 using Dade.Dms.Rest.ServiceModel;
 using Dade.Dms.Rest.ServiceModel.Enums;
 using Petecat.Extension;
@@ -27,6 +27,28 @@ namespace Dade.Dms.Rest.ModelTransfer
             maintenancePlan.Status = (MaintenancePlanStatus)typeof(MaintenancePlanStatus).GetEnumByValue(maintenancePlanSource.Status);
 
             return maintenancePlan;
+        }
+
+        public static MaintenancePlanSource BuildMaintenancePlanSource(MaintenancePlan maintenancePlan)
+        {
+            if (maintenancePlan == null)
+            {
+                return null;
+            }
+
+            var maintenancePlanSource = new MaintenancePlanSource();
+
+            maintenancePlanSource.Content = maintenancePlan.Content;
+            maintenancePlanSource.CreationDate = Utility.ConvertDateTime(maintenancePlan.CreationDate);
+            maintenancePlanSource.DeviceInfo = DeviceInfoTransfer.BuildDeviceInfoSource(maintenancePlan.DeviceInfo);
+            maintenancePlanSource.Id = maintenancePlan.Id;
+            maintenancePlanSource.ModifiedDate = Utility.ConvertDateTime(maintenancePlan.ModifiedDate);
+            maintenancePlanSource.Remark = maintenancePlan.Remark;
+            maintenancePlanSource.ScheduleType = typeof(MaintenancePlanScheduleType).GetValueByEnum(maintenancePlan.ScheduleType);
+            maintenancePlanSource.ScheduleValue = maintenancePlan.ScheduleValue;
+            maintenancePlanSource.Status = typeof(MaintenancePlanStatus).GetValueByEnum(maintenancePlan.Status);
+
+            return maintenancePlanSource;
         }
     }
 }

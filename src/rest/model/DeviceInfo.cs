@@ -29,5 +29,9 @@ namespace Dade.Dms.Rest.ServiceModel
         public string ProductionAbility { get; set; }
 
         public string MaintenanceMaunal { get; set; }
+
+        public DeviceCheckpoint[] DeviceCheckpoints { get; set; }
+
+        public DeviceSparePart[] DeviceSpareParts { get; set; }
     }
 }

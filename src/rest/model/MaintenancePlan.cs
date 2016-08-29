@@ -10,6 +10,10 @@ namespace Dade.Dms.Rest.ServiceModel
 
         public MaintenancePlanStatus Status { get; set; }
 
+        public string PeriodFrom { get; set; }
+
+        public string PeriodTo { get; set; }
+
         public MaintenancePlanScheduleType ScheduleType { get; set; }
 
         public string ScheduleValue { get; set; }

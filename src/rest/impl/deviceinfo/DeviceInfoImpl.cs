@@ -4,6 +4,7 @@ using Dade.Dms.Rest.Impl.Business;
 using Dade.Dms.Rest.ServiceModel;
 
 using Petecat.IoC.Attributes;
+using Dade.Dms.Rest.ServiceModel.Errors;
 
 namespace Dade.Dms.Rest.Impl
 {
@@ -27,7 +28,7 @@ namespace Dade.Dms.Rest.Impl
                 case "Add": _DeviceInfoBusiness.AddDevice(request, response); break;
                 case "Edit": _DeviceInfoBusiness.EditDevice(request, response); break;
                 case "Delete": _DeviceInfoBusiness.DeleteDevice(request, response); break;
-                default: throw new RestException("", string.Format("it does not support action '{0}'.", request.ActionName));
+                default: throw new ActionNotSupportedException(request.ActionName);
             }
 
             return response;
@@ -39,8 +40,9 @@ namespace Dade.Dms.Rest.Impl
 
             switch (request.ActionName)
             {
-                case "ByConditions": _DeviceInfoBusiness.QueryDevicesByConditions(request, response); break;
-                default: throw new RestException("", string.Format("it does not support action '{0}'.", request.ActionName));
+                case "Brief": _DeviceInfoBusiness.QueryBriefDevices(request, response); break;
+                case "Detail": _DeviceInfoBusiness.QueryDetailDevices(request, response); break;
+                default: throw new ActionNotSupportedException(request.ActionName);
             }
 
             return response;

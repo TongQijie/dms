@@ -29,7 +29,7 @@ namespace Dade.Dms.Rest.ServiceImplement
 
         public RestServiceResponse<DeviceInfo[]> GetDeviceInfoList(RestServiceRequest request)
         {
-            return _DeviceInfoImpl.GetDeviceInfoList(request);
+            return Sandbox(request, _DeviceInfoImpl.GetDeviceInfoList);
         }
     }
 }

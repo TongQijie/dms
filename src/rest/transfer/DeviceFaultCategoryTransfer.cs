@@ -1,4 +1,4 @@
-﻿using Dade.Dms.Repo.RepoModel;
+﻿using Dade.Dms.Repo.DataModel;
 using Dade.Dms.Rest.ServiceModel;
 
 namespace Dade.Dms.Rest.ModelTransfer
@@ -19,6 +19,22 @@ namespace Dade.Dms.Rest.ModelTransfer
             deviceFaultCategory.Title = deviceFaultCategorySource.Title;
 
             return deviceFaultCategory;
+        }
+
+        public static DeviceFaultCategorySource BuildDeviceFaultCategorySource(DeviceFaultCategory deviceFaultCategory)
+        {
+            if (deviceFaultCategory == null)
+            {
+                return null;
+            }
+
+            var deviceFaultCategorySource = new DeviceFaultCategorySource();
+
+            deviceFaultCategorySource.Description = deviceFaultCategory.Description;
+            deviceFaultCategorySource.Id = deviceFaultCategory.Id;
+            deviceFaultCategorySource.Title = deviceFaultCategory.Title;
+
+            return deviceFaultCategorySource;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Dade.Dms.Repo.RepoModel;
+﻿using Dade.Dms.Repo.DataModel;
 using Dade.Dms.Rest.ServiceModel;
 using Dade.Dms.Rest.ServiceModel.Enums;
 using Petecat.Extension;

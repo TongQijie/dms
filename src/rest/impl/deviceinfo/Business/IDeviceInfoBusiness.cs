@@ -11,6 +11,8 @@ namespace Dade.Dms.Rest.Impl.Business
 
         void DeleteDevice(RestServiceRequest<DeviceInfo> request, RestServiceResponse<DeviceInfo> response);
 
-        void QueryDevicesByConditions(RestServiceRequest request, RestServiceResponse<DeviceInfo[]> response);
+        void QueryBriefDevices(RestServiceRequest request, RestServiceResponse<DeviceInfo[]> response);
+
+        void QueryDetailDevices(RestServiceRequest request, RestServiceResponse<DeviceInfo[]> response);
     }
 }
