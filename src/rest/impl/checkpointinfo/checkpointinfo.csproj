@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CE03BC90-E59A-4301-B13F-B67A6B1B0491}</ProjectGuid>
+    <ProjectGuid>{F7A033FF-1B99-4743-8347-582388E4E4D8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dade.Dms.Rest.ServiceInterface</RootNamespace>
-    <AssemblyName>interface</AssemblyName>
+    <RootNamespace>Dade.Dms.Rest.Impl</RootNamespace>
+    <AssemblyName>checkpointinfo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\host\bin\</OutputPath>
+    <OutputPath>..\..\host\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -32,23 +32,30 @@
   <ItemGroup>
     <Reference Include="petecat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\ref\petecat.dll</HintPath>
+      <HintPath>..\..\..\..\ref\petecat.dll</HintPath>
     </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICheckpointInfoService.cs" />
-    <Compile Include="IDeviceInfoService.cs" />
-    <Compile Include="IInspectionInfoService.cs" />
-    <Compile Include="IMaintenanceInfoService.cs" />
-    <Compile Include="IDeviceRepairInfoService.cs" />
-    <Compile Include="ISparePartInfoService.cs" />
+    <Compile Include="Business\DeviceCheckpointBusiness.cs" />
+    <Compile Include="Business\IDeviceCheckpointBusiness.cs" />
+    <Compile Include="DeviceCheckpointImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\DeviceCheckpointRepository.cs" />
+    <Compile Include="Repository\IDeviceCheckpointRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\model\servicemodel.csproj">
+    <ProjectReference Include="..\..\..\repo\model\repomodel.csproj">
+      <Project>{1226362a-ff13-4003-bfc0-59d1dbff6465}</Project>
+      <Name>repomodel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\model\servicemodel.csproj">
       <Project>{1835d767-04fe-4649-926a-ce091de0bace}</Project>
       <Name>servicemodel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\transfer\transfer.csproj">
+      <Project>{eba05e9a-e5bf-411d-9daf-602b1b92bed3}</Project>
+      <Name>transfer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

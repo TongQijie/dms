@@ -38,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnyServiceBase.cs" />
+    <Compile Include="CheckpointInfoService.cs" />
     <Compile Include="DeviceInfoService.cs" />
     <Compile Include="InspectionInfoService.cs" />
     <Compile Include="MaintenanceInfoService.cs" />

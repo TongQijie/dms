@@ -6,12 +6,15 @@ namespace Dade.Dms.Rest.Impl.Repository
 {
     public interface IMaintenancePlanRepository
     {
-        int AddPlan(MaintenancePlanSource maintenancePlan, MaintenanceRecordSource[] maintenanceRecords);
+        int AddPlan(MaintenancePlanSource maintenancePlanSource, MaintenanceRecordSource[] maintenanceRecordSources, 
+            DeviceCheckpointSource[] deviceCheckpointSources, DeviceSparePartSource[] deviceSparePartSources);
 
-        int EditPlan(MaintenancePlan maintenancePlan);
+        int EditPlan(MaintenancePlanSource maintenancePlanSource, MaintenanceRecordSource[] maintenanceRecordSources,
+            DeviceCheckpointSource[] deviceCheckpointSources, DeviceSparePartSource[] deviceSparePartSources);
 
-        int DeletePlan(MaintenancePlan maintenancePlan);
+        int DeletePlan(MaintenancePlanSource maintenancePlanSource);
 
-        MaintenancePlan[] QueryPlansByConditions(Paging paging, int id, string deviceNumber);
+        MaintenancePlanSource[] QueryMaintenancePlans(Paging paging, int id, string deviceNumber);
+
     }
 }

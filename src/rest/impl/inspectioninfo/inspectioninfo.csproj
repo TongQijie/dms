@@ -54,7 +54,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\model\servicemodel.csproj">
       <Project>{1835d767-04fe-4649-926a-ce091de0bace}</Project>
-      <Name>model</Name>
+      <Name>servicemodel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,7 +6,7 @@ using Petecat.Extension;
 
 namespace Dade.Dms.Rest.ModelTransfer
 {
-    public static class DeviceCheckPointTransfer
+    public static class DeviceCheckpointTransfer
     {
         public static DeviceCheckpoint[] BuildDeviceCheckpoints(DeviceCheckpointSource[] deviceCheckpointSources)
         {

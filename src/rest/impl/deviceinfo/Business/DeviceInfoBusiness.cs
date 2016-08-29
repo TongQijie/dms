@@ -31,7 +31,7 @@ namespace Dade.Dms.Rest.Impl.Business
 
             var retVal = _DeviceInfoRepository.AddDevice(DeviceInfoTransfer.BuildDeviceInfoSource(request.Body),
                 DeviceSparePartTransfer.BuildDeviceSparePartSources(request.Body.DeviceSpareParts),
-                DeviceCheckPointTransfer.BuildDeviceCheckpointSources(request.Body.DeviceCheckpoints));
+                DeviceCheckpointTransfer.BuildDeviceCheckpointSources(request.Body.DeviceCheckpoints));
             if (retVal < 0)
             {
                 switch (retVal)
@@ -55,7 +55,7 @@ namespace Dade.Dms.Rest.Impl.Business
 
             var retVal = _DeviceInfoRepository.EditDevice(DeviceInfoTransfer.BuildDeviceInfoSource(request.Body),
                 DeviceSparePartTransfer.BuildDeviceSparePartSources(request.Body.DeviceSpareParts),
-                DeviceCheckPointTransfer.BuildDeviceCheckpointSources(request.Body.DeviceCheckpoints));
+                DeviceCheckpointTransfer.BuildDeviceCheckpointSources(request.Body.DeviceCheckpoints));
             if (retVal < 0)
             {
                 switch (retVal)
@@ -70,7 +70,7 @@ namespace Dade.Dms.Rest.Impl.Business
         {
             if (!request.Body.DeviceNumber.HasValue())
             {
-                throw new RestException("", "device number cannot be empty.");
+                throw new RequestDataInvalidException("DeviceNumber");
             }
 
             var retVal = _DeviceInfoRepository.DeleteDevice(DeviceInfoTransfer.BuildDeviceInfoSource(request.Body));
@@ -104,7 +104,7 @@ namespace Dade.Dms.Rest.Impl.Business
                 request.GetValue("DeviceNumber"),
                 request.GetValue("DeviceName")));
 
-            var deviceCheckpoints = DeviceCheckPointTransfer.BuildDeviceCheckpoints(
+            var deviceCheckpoints = DeviceCheckpointTransfer.BuildDeviceCheckpoints(
                 _DeviceInfoRepository.QueryDeviceCheckpoints(deviceInfos.Select(x => x.DeviceNumber).ToArray()));
 
             var deviceSparePartDeviceInfoMappings = DeviceSparePartDeviceInfoMappingTransfer.BuildDeviceSparePartDeviceInfoMappings(

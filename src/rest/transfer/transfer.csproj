@@ -38,7 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeviceAlarmRecordTransfer.cs" />
-    <Compile Include="DeviceCheckPointTransfer.cs" />
+    <Compile Include="DeviceCheckpointTransfer.cs" />
     <Compile Include="DeviceFaultCategoryTransfer.cs" />
     <Compile Include="DeviceInfoTransfer.cs" />
     <Compile Include="DeviceRepairRecordTransfer.cs" />

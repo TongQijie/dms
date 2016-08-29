@@ -3,6 +3,7 @@ using Dade.Dms.Rest.ServiceModel;
 using Dade.Dms.Rest.ServiceModel.Errors;
 using Dade.Dms.Rest.ServiceModel.Services;
 using Petecat.IoC.Attributes;
+
 namespace Dade.Dms.Rest.Impl
 {
     [AutoResolvable(typeof(DeviceSparePartImpl))]
@@ -36,7 +37,7 @@ namespace Dade.Dms.Rest.Impl
 
             switch (request.ActionName)
             {
-                case "ByConditions": _DeviceSparePartBusiness.QueryDeviceSpareParts(request, response); break;
+                case "Brief": _DeviceSparePartBusiness.QueryDeviceSpareParts(request, response); break;
                 default: throw new ActionNotSupportedException(request.ActionName);
             }
 
