@@ -1,10 +1,10 @@
-﻿using Dade.Dms.Rest.Impl.Repository;
-using Dade.Dms.Rest.ServiceModel;
+﻿using Dade.Dms.Rest.ServiceModel;
 using Dade.Dms.Rest.ServiceModel.Services;
 using Petecat.IoC.Attributes;
 using Petecat.Extension;
 using Dade.Dms.Rest.ServiceModel.Errors;
 using Dade.Dms.Rest.ModelTransfer;
+using Dade.Dms.Rest.Repository;
 namespace Dade.Dms.Rest.Impl.Business
 {
     [AutoResolvable(typeof(IDeviceCheckpointBusiness))]
@@ -35,17 +35,17 @@ namespace Dade.Dms.Rest.Impl.Business
                     default: throw new UndefinedException(retVal);
                 }
             }
+
+            response.Body = new DeviceCheckpoint() { Id = retVal };
         }
 
         public void EditCheckpoint(RestServiceRequest<DeviceCheckpoint> request, RestServiceResponse<DeviceCheckpoint> response)
         {
             if (request.Body == null
-                || request.Body.Id > 0
-                || request.Body.DeviceInfo == null
-                || !request.Body.DeviceInfo.DeviceNumber.HasValue()
+                || request.Body.Id <= 0
                 || !request.Body.Description.HasValue())
             {
-                throw new RequestDataInvalidException("DeviceNumber", "Description");
+                throw new RequestDataInvalidException("Id", "Description");
             }
 
             var retVal = _DeviceCheckpointRepository.EditCheckpoint(DeviceCheckpointTransfer.BuildDeviceCheckpointSource(request.Body));
@@ -61,9 +61,9 @@ namespace Dade.Dms.Rest.Impl.Business
         public void DeleteCheckpoint(RestServiceRequest<DeviceCheckpoint> request, RestServiceResponse<DeviceCheckpoint> response)
         {
             if (request.Body == null
-                || request.Body.Id > 0)
+                || request.Body.Id <= 0)
             {
-                throw new RequestDataInvalidException("DeviceNumber", "Description");
+                throw new RequestDataInvalidException("DeviceNumber");
             }
 
             var retVal = _DeviceCheckpointRepository.DeleteCheckpoint(DeviceCheckpointTransfer.BuildDeviceCheckpointSource(request.Body));
@@ -82,6 +82,7 @@ namespace Dade.Dms.Rest.Impl.Business
 
             response.Body = DeviceCheckpointTransfer.BuildDeviceCheckpoints(_DeviceCheckpointRepository.QueryDeviceCheckpoints(
                 request.Paging,
+                request.GetValue<int>("DeviceCheckpointId", 0),
                 request.GetValue("DeviceNumber")));
         }
     }

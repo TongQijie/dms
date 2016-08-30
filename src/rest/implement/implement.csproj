@@ -47,29 +47,33 @@
     <Compile Include="SparePartInfoService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\impl\deviceinfo\deviceinfo.csproj">
+    <ProjectReference Include="..\impl\checkpointinfo\impl.checkpointinfo.csproj">
+      <Project>{f7a033ff-1b99-4743-8347-582388e4e4d8}</Project>
+      <Name>impl.checkpointinfo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\impl\deviceinfo\impl.deviceinfo.csproj">
       <Project>{9808ff61-bbc0-418b-b477-9af470f9055b}</Project>
-      <Name>deviceinfo</Name>
+      <Name>impl.deviceinfo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\impl\devicestateinfo\devicestateinfo.csproj">
+    <ProjectReference Include="..\impl\devicestateinfo\impl.devicestateinfo.csproj">
       <Project>{bd39203c-c773-40ee-8a1b-5e9a66bd3a6f}</Project>
-      <Name>devicestateinfo</Name>
+      <Name>impl.devicestateinfo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\impl\inspectioninfo\inspectioninfo.csproj">
+    <ProjectReference Include="..\impl\inspectioninfo\impl.inspectioninfo.csproj">
       <Project>{364e6638-7e33-474f-9346-b3192c020ea9}</Project>
-      <Name>inspectioninfo</Name>
+      <Name>impl.inspectioninfo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\impl\maintenanceinfo\maintenanceinfo.csproj">
+    <ProjectReference Include="..\impl\maintenanceinfo\impl.maintenanceinfo.csproj">
       <Project>{e479ecda-9253-4723-b0a2-84ab545ab278}</Project>
-      <Name>maintenanceinfo</Name>
+      <Name>impl.maintenanceinfo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\impl\repairinfo\devicerepairinfo.csproj">
+    <ProjectReference Include="..\impl\repairinfo\impl.devicerepairinfo.csproj">
       <Project>{faf511aa-b6f4-4e42-a8de-407c2cfe642c}</Project>
-      <Name>devicerepairinfo</Name>
+      <Name>impl.devicerepairinfo</Name>
     </ProjectReference>
-    <ProjectReference Include="..\impl\sparepartinfo\sparepartinfo.csproj">
+    <ProjectReference Include="..\impl\sparepartinfo\impl.sparepartinfo.csproj">
       <Project>{859e6f16-6cb0-481c-9aca-59b78a1efc6c}</Project>
-      <Name>sparepartinfo</Name>
+      <Name>impl.sparepartinfo</Name>
     </ProjectReference>
     <ProjectReference Include="..\interface\interface.csproj">
       <Project>{ce03bc90-e59a-4301-b13f-b67a6b1b0491}</Project>

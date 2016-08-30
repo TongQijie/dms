@@ -3,8 +3,8 @@ using Dade.Dms.Rest.ServiceModel.Services;
 using Petecat.IoC.Attributes;
 using Petecat.Extension;
 using Dade.Dms.Rest.ServiceModel.Errors;
-using Dade.Dms.Rest.Impl.Repository;
 using Dade.Dms.Rest.ModelTransfer;
+using Dade.Dms.Rest.Repository;
 
 namespace Dade.Dms.Rest.Impl.Business
 {
@@ -80,7 +80,8 @@ namespace Dade.Dms.Rest.Impl.Business
 
             response.Body = DeviceSparePartTransfer.BuildDeviceSpareParts(_DeviceSparePartRepository.QueryDeviceSpareParts(
                 request.Paging,
-                request.GetValue("SparePartNumber")));
+                request.GetValue("SparePartNumber"),
+                request.GetValue("DeviceNumber")));
         }
     }
 }

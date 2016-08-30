@@ -55,6 +55,11 @@ namespace Dade.Dms.Rest.ModelTransfer
 
         public static DeviceInfoSource BuildDeviceInfoSource(DeviceInfo deviceInfo)
         {
+            if (deviceInfo == null)
+            {
+                return null;
+            }
+
             var deviceInfoSource = new DeviceInfoSource();
 
             deviceInfoSource.Category = deviceInfo.Category;

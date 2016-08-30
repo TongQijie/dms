@@ -52,9 +52,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{0CF6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "impl", "impl", "{E34133C3-213E-49C9-BA49-1D373C5447D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deviceinfo", "src\rest\impl\deviceinfo\deviceinfo.csproj", "{9808FF61-BBC0-418B-B477-9AF470F9055B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "impl.deviceinfo", "src\rest\impl\deviceinfo\impl.deviceinfo.csproj", "{9808FF61-BBC0-418B-B477-9AF470F9055B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "maintenanceinfo", "src\rest\impl\maintenanceinfo\maintenanceinfo.csproj", "{E479ECDA-9253-4723-B0A2-84AB545AB278}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "impl.maintenanceinfo", "src\rest\impl\maintenanceinfo\impl.maintenanceinfo.csproj", "{E479ECDA-9253-4723-B0A2-84AB545AB278}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "website", "website", "{BD2B1326-D65F-4B05-9985-4B77C85408A1}"
 EndProject
@@ -70,11 +70,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jobs", "src\data\jobs\jobs.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app", "src\data\app\app.csproj", "{02A3E405-DBD8-4E9E-BB2E-F88FFD48FD04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "inspectioninfo", "src\rest\impl\inspectioninfo\inspectioninfo.csproj", "{364E6638-7E33-474F-9346-B3192C020EA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "impl.inspectioninfo", "src\rest\impl\inspectioninfo\impl.inspectioninfo.csproj", "{364E6638-7E33-474F-9346-B3192C020EA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "devicerepairinfo", "src\rest\impl\repairinfo\devicerepairinfo.csproj", "{FAF511AA-B6F4-4E42-A8DE-407C2CFE642C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "impl.devicerepairinfo", "src\rest\impl\repairinfo\impl.devicerepairinfo.csproj", "{FAF511AA-B6F4-4E42-A8DE-407C2CFE642C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "devicestateinfo", "src\rest\impl\devicestateinfo\devicestateinfo.csproj", "{BD39203C-C773-40EE-8A1B-5E9A66BD3A6F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "impl.devicestateinfo", "src\rest\impl\devicestateinfo\impl.devicestateinfo.csproj", "{BD39203C-C773-40EE-8A1B-5E9A66BD3A6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "configuration", "src\website\configuration\configuration.csproj", "{D99C57C7-02E8-4406-A75D-CADCDE54E546}"
 EndProject
@@ -84,19 +84,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "repomodel", "src\repo\model
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "transfer", "src\rest\transfer\transfer.csproj", "{EBA05E9A-E5BF-411D-9DAF-602B1B92BED3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common", "src\rest\impl\common\common.csproj", "{598853D5-3FEB-41F9-8347-7144D044CC6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "impl.common", "src\rest\impl\common\impl.common.csproj", "{598853D5-3FEB-41F9-8347-7144D044CC6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sparepartinfo", "src\rest\impl\sparepartinfo\sparepartinfo.csproj", "{859E6F16-6CB0-481C-9ACA-59B78A1EFC6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "impl.sparepartinfo", "src\rest\impl\sparepartinfo\impl.sparepartinfo.csproj", "{859E6F16-6CB0-481C-9ACA-59B78A1EFC6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "checkpointinfo", "src\rest\impl\checkpointinfo\checkpointinfo.csproj", "{F7A033FF-1B99-4743-8347-582388E4E4D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "impl.checkpointinfo", "src\rest\impl\checkpointinfo\impl.checkpointinfo.csproj", "{F7A033FF-1B99-4743-8347-582388E4E4D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "repository", "repository", "{AEF167D3-C840-4C69-BABD-2AD80A318D3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sparepartinfo", "src\rest\repository\sparepartinfo\sparepartinfo.csproj", "{4DA128EC-40CB-4412-904E-E529DD287B21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "repository.sparepartinfo", "src\rest\repository\sparepartinfo\repository.sparepartinfo.csproj", "{4DA128EC-40CB-4412-904E-E529DD287B21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "checkpointinfo", "src\rest\repository\checkpointinfo\checkpointinfo.csproj", "{256AD1A3-A0E0-4C43-B464-86A32760FA2A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "repository.checkpointinfo", "src\rest\repository\checkpointinfo\repository.checkpointinfo.csproj", "{256AD1A3-A0E0-4C43-B464-86A32760FA2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deviceinfo", "src\rest\repository\deviceinfo\deviceinfo.csproj", "{406DB6BB-90B2-4169-AC97-BF97A1DB9C70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "repository.deviceinfo", "src\rest\repository\deviceinfo\repository.deviceinfo.csproj", "{406DB6BB-90B2-4169-AC97-BF97A1DB9C70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

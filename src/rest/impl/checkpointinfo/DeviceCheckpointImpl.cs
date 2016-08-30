@@ -15,7 +15,7 @@ namespace Dade.Dms.Rest.Impl
             _DeviceCheckpointBusiness = deviceCheckpointBusiness;
         }
 
-        public RestServiceResponse<DeviceCheckpoint> OperateDeviceSparePart(RestServiceRequest<DeviceCheckpoint> request)
+        public RestServiceResponse<DeviceCheckpoint> OperateDeviceCheckpoint(RestServiceRequest<DeviceCheckpoint> request)
         {
             var response = new RestServiceResponse<DeviceCheckpoint>();
 
@@ -30,7 +30,7 @@ namespace Dade.Dms.Rest.Impl
             return response;
         }
 
-        public RestServiceResponse<DeviceCheckpoint[]> GetDeviceSparePartList(RestServiceRequest request)
+        public RestServiceResponse<DeviceCheckpoint[]> GetDeviceCheckpointList(RestServiceRequest request)
         {
             var response = new RestServiceResponse<DeviceCheckpoint[]>();
 

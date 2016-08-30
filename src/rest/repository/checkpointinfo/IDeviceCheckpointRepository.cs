@@ -1,6 +1,6 @@
 ﻿using Dade.Dms.Repo.DataModel;
 using Dade.Dms.Rest.ServiceModel.Services;
-namespace Dade.Dms.Rest.Impl.Repository
+namespace Dade.Dms.Rest.Repository
 {
     public interface IDeviceCheckpointRepository
     {
@@ -10,6 +10,8 @@ namespace Dade.Dms.Rest.Impl.Repository
 
         int DeleteCheckpoint(DeviceCheckpointSource deviceCheckpointSource);
 
-        DeviceCheckpointSource[] QueryDeviceCheckpoints(Paging paging, string deviceNumber);
+        DeviceCheckpointSource[] QueryDeviceCheckpoints(Paging paging, int id, string deviceNumber);
+
+        DeviceCheckpointSource[] QueryDeviceCheckpoints(string[] deviceNumbers);
     }
 }

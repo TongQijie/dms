@@ -1,10 +1,10 @@
 ﻿using Dade.Dms.Rest.ServiceModel;
 using Dade.Dms.Rest.ServiceModel.Services;
 using Petecat.IoC.Attributes;
-using Dade.Dms.Rest.Impl.Repository;
 using Dade.Dms.Rest.ModelTransfer;
 using Petecat.Extension;
 using Dade.Dms.Rest.ServiceModel.Errors;
+using Dade.Dms.Rest.Repository;
 
 using System.Linq;
 
@@ -15,9 +15,17 @@ namespace Dade.Dms.Rest.Impl.Business
     {
         private IDeviceInfoRepository _DeviceInfoRepository;
 
-        public DeviceInfoBusiness(IDeviceInfoRepository deviceInfoRepository)
+        private IDeviceSparePartRepository _DeviceSparePartRepository;
+
+        private IDeviceCheckpointRepository _DeviceCheckpointRepository;
+
+        public DeviceInfoBusiness(IDeviceInfoRepository deviceInfoRepository,
+            IDeviceSparePartRepository deviceSparePartRepository,
+            IDeviceCheckpointRepository deviceCheckpointRepository)
         {
             _DeviceInfoRepository = deviceInfoRepository;
+            _DeviceSparePartRepository = deviceSparePartRepository;
+            _DeviceCheckpointRepository = deviceCheckpointRepository;
         }
 
         public void AddDevice(RestServiceRequest<DeviceInfo> request, RestServiceResponse<DeviceInfo> response)
@@ -105,10 +113,10 @@ namespace Dade.Dms.Rest.Impl.Business
                 request.GetValue("DeviceName")));
 
             var deviceCheckpoints = DeviceCheckpointTransfer.BuildDeviceCheckpoints(
-                _DeviceInfoRepository.QueryDeviceCheckpoints(deviceInfos.Select(x => x.DeviceNumber).ToArray()));
+                _DeviceCheckpointRepository.QueryDeviceCheckpoints(deviceInfos.Select(x => x.DeviceNumber).ToArray()));
 
             var deviceSparePartDeviceInfoMappings = DeviceSparePartDeviceInfoMappingTransfer.BuildDeviceSparePartDeviceInfoMappings(
-                _DeviceInfoRepository.QueryDeviceSpareParts(deviceInfos.Select(x => x.DeviceNumber).ToArray()));
+                _DeviceSparePartRepository.QueryDeviceSpareParts(deviceInfos.Select(x => x.DeviceNumber).ToArray()));
 
             foreach (var deviceInfo in deviceInfos)
             {

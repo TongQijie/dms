@@ -11,9 +11,12 @@ namespace Dade.Test.Rest
         static void Main(string[] args)
         {
             var test = new RestTest();
-            test.ScheduleHandlerTest();
-            RunTest(test);
-            Clean(test);
+            test.AddCheckpoint();
+            test.EditCheckpoint();
+            test.QueryBriefCheckpoints();
+            test.DeleteCheckpoint();
+            //RunTest(test);
+            //Clean(test);
         }
 
         static void Container(RestServiceResponse response)

@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E479ECDA-9253-4723-B0A2-84AB545AB278}</ProjectGuid>
+    <ProjectGuid>{4DA128EC-40CB-4412-904E-E529DD287B21}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dade.Dms.Rest.Impl</RootNamespace>
-    <AssemblyName>maintenanceinfo</AssemblyName>
+    <RootNamespace>Dade.Dms.Rest.Repository</RootNamespace>
+    <AssemblyName>repository.sparepartinfo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -37,19 +37,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\IMaintenancePlanBusiness.cs" />
-    <Compile Include="Business\IMaintenanceRecordBusiness.cs" />
-    <Compile Include="Business\MaintenanceRecordBusiness.cs" />
-    <Compile Include="Business\MaintenancePlanBusiness.cs" />
-    <Compile Include="MaintenancePlanImpl.cs" />
-    <Compile Include="MaintenancePlanRepository.cs" />
-    <Compile Include="MaintenanceRecordImpl.cs" />
-    <Compile Include="MaintenanceRecordRepository.cs" />
+    <Compile Include="DeviceSparePartRepository.cs" />
+    <Compile Include="IDeviceSparePartRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IMaintenancePlanRepository.cs" />
-    <Compile Include="Repository\IMaintenanceRecordRepository.cs" />
-    <Compile Include="Repository\MaintenancePlanRepository.cs" />
-    <Compile Include="Repository\MaintenanceRecordRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\repo\model\repomodel.csproj">
@@ -59,14 +49,6 @@
     <ProjectReference Include="..\..\model\servicemodel.csproj">
       <Project>{1835d767-04fe-4649-926a-ce091de0bace}</Project>
       <Name>servicemodel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\transfer\transfer.csproj">
-      <Project>{eba05e9a-e5bf-411d-9daf-602b1b92bed3}</Project>
-      <Name>transfer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\common\common.csproj">
-      <Project>{598853d5-3feb-41f9-8347-7144d044cc6b}</Project>
-      <Name>common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

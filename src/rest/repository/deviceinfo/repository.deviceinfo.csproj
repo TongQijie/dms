@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{859E6F16-6CB0-481C-9ACA-59B78A1EFC6C}</ProjectGuid>
+    <ProjectGuid>{406DB6BB-90B2-4169-AC97-BF97A1DB9C70}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dade.Dms.Rest.Impl</RootNamespace>
-    <AssemblyName>sparepartinfo</AssemblyName>
+    <RootNamespace>Dade.Dms.Rest.Repository</RootNamespace>
+    <AssemblyName>repository.deviceinfo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -37,12 +37,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\DeviceSparePartBusiness.cs" />
-    <Compile Include="Business\IDeviceSparePartBusiness.cs" />
-    <Compile Include="DeviceSparePartImpl.cs" />
+    <Compile Include="DeviceInfoRepository.cs" />
+    <Compile Include="IDeviceInfoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\DeviceSparePartRepository.cs" />
-    <Compile Include="Repository\IDeviceSparePartRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\repo\model\repomodel.csproj">
@@ -53,12 +50,7 @@
       <Project>{1835d767-04fe-4649-926a-ce091de0bace}</Project>
       <Name>servicemodel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\transfer\transfer.csproj">
-      <Project>{eba05e9a-e5bf-411d-9daf-602b1b92bed3}</Project>
-      <Name>transfer</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

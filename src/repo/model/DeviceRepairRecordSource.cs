@@ -7,7 +7,7 @@ namespace Dade.Dms.Repo.DataModel
         [PlainDataMapping]
         public int Id { get; set; }
 
-        [CompositeDataMapping(typeof(DeviceInfoSource), Prefix = "DIS_")]
+        [CompositeDataMapping(typeof(DeviceInfoSource), Prefix = "Dev_")]
         public DeviceInfoSource DeviceInfo { get; set; }
 
         [PlainDataMapping]
@@ -16,7 +16,7 @@ namespace Dade.Dms.Repo.DataModel
         [PlainDataMapping]
         public string Source { get; set; }
 
-        [CompositeDataMapping(typeof(DeviceAlarmRecordSource), Prefix = "DARS_")]
+        [CompositeDataMapping(typeof(DeviceAlarmRecordSource), Prefix = "Ala_")]
         public DeviceAlarmRecordSource DeviceAlarmRecord { get; set; }
 
         [PlainDataMapping]

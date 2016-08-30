@@ -7,7 +7,7 @@ namespace Dade.Dms.Repo.DataModel
         [PlainDataMapping]
         public int Id { get; set; }
 
-        [CompositeDataMapping(typeof(DeviceInfoSource), Prefix = "DIS_")]
+        [CompositeDataMapping(typeof(DeviceInfoSource), Prefix = "Dev_")]
         public DeviceInfoSource DeviceInfo { get; set; }
 
         [PlainDataMapping]

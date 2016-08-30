@@ -2,7 +2,7 @@
 using Dade.Dms.Rest.ServiceModel;
 using Dade.Dms.Rest.ServiceModel.Services;
 
-namespace Dade.Dms.Rest.Impl.Repository
+namespace Dade.Dms.Rest.Repository
 {
     public interface IDeviceSparePartRepository
     {
@@ -12,6 +12,8 @@ namespace Dade.Dms.Rest.Impl.Repository
 
         int DeleteSparePart(DeviceSparePartSource deviceSparePartSource);
 
-        DeviceSparePartSource[] QueryDeviceSpareParts(Paging paging, string deviceSparePartNumber);
+        DeviceSparePartSource[] QueryDeviceSpareParts(Paging paging, string deviceSparePartNumber, string deviceNumber);
+
+        DeviceSparePartDeviceInfoMappingSource[] QueryDeviceSpareParts(string[] deviceNumber);
     }
 }

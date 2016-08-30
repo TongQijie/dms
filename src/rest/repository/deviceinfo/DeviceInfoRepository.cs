@@ -4,7 +4,7 @@ using Dade.Dms.Rest.ServiceModel.Services;
 using Petecat.IoC.Attributes;
 using Petecat.Data.Access;
 using Dade.Dms.Repo.DataModel;
-using Dade.Dms.Rest.ModelTransfer;
+
 
 namespace Dade.Dms.Rest.Impl.Repository
 {

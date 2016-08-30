@@ -13,7 +13,7 @@ namespace Dade.Dms.Repo.DataModel
         [PlainDataMapping]
         public string Status { get; set; }
 
-        [CompositeDataMapping(typeof(InspectionPlanSource), Prefix = "IPS_")]
+        [CompositeDataMapping(typeof(InspectionPlanSource), Prefix = "Isp_")]
         public InspectionPlanSource InspectionPlan { get; set; }
 
         [PlainDataMapping]

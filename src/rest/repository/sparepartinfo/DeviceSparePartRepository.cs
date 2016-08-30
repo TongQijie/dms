@@ -2,7 +2,7 @@
 using Dade.Dms.Rest.ServiceModel.Services;
 using Petecat.IoC.Attributes;
 
-namespace Dade.Dms.Rest.Impl.Repository
+namespace Dade.Dms.Rest.Repository
 {
     [AutoResolvable(typeof(IDeviceSparePartRepository))]
     public class DeviceSparePartRepository : IDeviceSparePartRepository
@@ -22,7 +22,12 @@ namespace Dade.Dms.Rest.Impl.Repository
             throw new System.NotImplementedException();
         }
 
-        public DeviceSparePartSource[] QueryDeviceSpareParts(Paging paging, string deviceSparePartNumber)
+        public DeviceSparePartSource[] QueryDeviceSpareParts(Paging paging, string deviceSparePartNumber, string deviceNumber)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public DeviceSparePartDeviceInfoMappingSource[] QueryDeviceSpareParts(string[] deviceNumber)
         {
             throw new System.NotImplementedException();
         }

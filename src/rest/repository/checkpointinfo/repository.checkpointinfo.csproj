@@ -30,10 +30,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="petecat, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\ref\petecat.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeviceCheckpointRepository.cs" />
+    <Compile Include="IDeviceCheckpointRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\repo\model\repomodel.csproj">
+      <Project>{1226362a-ff13-4003-bfc0-59d1dbff6465}</Project>
+      <Name>repomodel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\model\servicemodel.csproj">
+      <Project>{1835d767-04fe-4649-926a-ce091de0bace}</Project>
+      <Name>servicemodel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -2,7 +2,7 @@
 using Dade.Dms.Rest.ServiceModel;
 using Dade.Dms.Rest.ServiceModel.Services;
 
-namespace Dade.Dms.Rest.Impl.Repository
+namespace Dade.Dms.Rest.Repository
 {
     public interface IDeviceInfoRepository
     {
@@ -13,9 +13,5 @@ namespace Dade.Dms.Rest.Impl.Repository
         int DeleteDevice(DeviceInfoSource deviceInfo);
 
         DeviceInfoSource[] QueryDeviceInfos(Paging paging, string deviceNumber, string deviceName);
-
-        DeviceSparePartDeviceInfoMappingSource[] QueryDeviceSpareParts(string[] deviceNumber);
-
-        DeviceCheckpointSource[] QueryDeviceCheckpoints(string[] deviceNumber);
     }
 }

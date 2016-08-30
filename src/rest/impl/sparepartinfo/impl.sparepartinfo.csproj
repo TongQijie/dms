@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9808FF61-BBC0-418B-B477-9AF470F9055B}</ProjectGuid>
+    <ProjectGuid>{859E6F16-6CB0-481C-9ACA-59B78A1EFC6C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Dade.Dms.Rest.Impl</RootNamespace>
-    <AssemblyName>deviceinfo</AssemblyName>
+    <AssemblyName>impl.sparepartinfo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\host\bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -37,11 +37,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Business\DeviceInfoBusiness.cs" />
-    <Compile Include="Business\IDeviceInfoBusiness.cs" />
-    <Compile Include="DeviceInfoImpl.cs" />
-    <Compile Include="Repository\DeviceInfoRepository.cs" />
-    <Compile Include="Repository\IDeviceInfoRepository.cs" />
+    <Compile Include="Business\DeviceSparePartBusiness.cs" />
+    <Compile Include="Business\IDeviceSparePartBusiness.cs" />
+    <Compile Include="DeviceSparePartImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +50,10 @@
     <ProjectReference Include="..\..\model\servicemodel.csproj">
       <Project>{1835d767-04fe-4649-926a-ce091de0bace}</Project>
       <Name>servicemodel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\repository\sparepartinfo\repository.sparepartinfo.csproj">
+      <Project>{4da128ec-40cb-4412-904e-e529dd287b21}</Project>
+      <Name>repository.sparepartinfo</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\transfer\transfer.csproj">
       <Project>{eba05e9a-e5bf-411d-9daf-602b1b92bed3}</Project>

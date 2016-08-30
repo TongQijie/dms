@@ -1,5 +1,4 @@
 ﻿using Dade.Dms.Rest.ServiceModel.Services;
-using Dade.Dms.Rest.Impl.Repository;
 using Dade.Dms.Rest.Impl.Business;
 using Dade.Dms.Rest.ServiceModel;
 
@@ -13,8 +12,7 @@ namespace Dade.Dms.Rest.Impl
     {
         private IDeviceInfoBusiness _DeviceInfoBusiness;
 
-        public DeviceInfoImpl(IDeviceInfoRepository deviceInfoRepository,
-            IDeviceInfoBusiness deviceInfoBusiness)
+        public DeviceInfoImpl(IDeviceInfoBusiness deviceInfoBusiness)
         {
             _DeviceInfoBusiness = deviceInfoBusiness;
         }
